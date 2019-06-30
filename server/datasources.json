@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "postgres": {
+    "host": "localhost",
+    "port": "5432",
+    "database": "bretagne",
+    "username": "mawcel",
+    "password": "mawcel",
+    "name": "postgres",
+    "debug": true,
+    "connector": "postgresql"
+  }
+}
