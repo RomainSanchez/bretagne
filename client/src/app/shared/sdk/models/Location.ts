@@ -10,7 +10,7 @@ export interface LocationInterface {
   "name": string;
   "decription"?: string;
   "id"?: number;
-  media?: Media[];
+  medias?: Media[];
 }
 
 export class Location implements LocationInterface {
@@ -19,7 +19,7 @@ export class Location implements LocationInterface {
   "name": string;
   "decription": string;
   "id": number;
-  media: Media[];
+  medias: Media[];
   constructor(data?: LocationInterface) {
     Object.assign(this, data);
   }
@@ -75,8 +75,8 @@ export class Location implements LocationInterface {
         },
       },
       relations: {
-        media: {
-          name: 'media',
+        medias: {
+          name: 'medias',
           type: 'Media[]',
           model: 'Media',
           relationType: 'hasMany',

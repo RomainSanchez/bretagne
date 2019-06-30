@@ -1,3 +1,29 @@
-<p>
-  form works!
-</p>
+<h2>Nouveau lieu</h2>
+
+<form class="login-form">
+    <mat-grid-list cols="2" rowHeight="50px">
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+              <input matInput placeholder="Nom" [(ngModel)]="location.name" name="name" required>
+          </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+              <textarea matInput placeholder="Description" [(ngModel)]="location.description" name="description" required></textarea>
+          </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1">
+          <mat-form-field>
+              <input matInput placeholder="Longitude" [(ngModel)]="location.longitude" name="longitude" required>
+          </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1">
+          <mat-form-field>
+              <input matInput placeholder="Lattitude" [(ngModel)]="location.lattitude" name="lattitude" required>
+          </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+</form>

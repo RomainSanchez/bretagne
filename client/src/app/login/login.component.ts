@@ -6,7 +6,7 @@ import { User, UserApi } from '../shared/sdk';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
   private user: User = new User();

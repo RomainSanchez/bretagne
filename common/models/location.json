@@ -24,7 +24,7 @@
   },
   "validations": [],
   "relations": {
-    "media": {
+    "medias": {
       "type": "hasMany",
       "model": "media",
       "foreignKey": "location_id",

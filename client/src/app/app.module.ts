@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatGridListModule
 } from '@angular/material';
 
 
@@ -41,6 +41,7 @@ import { FormComponent } from './form/form.component';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatGridListModule,
     FormsModule,
     HttpModule,
     SDKBrowserModule.forRoot(),

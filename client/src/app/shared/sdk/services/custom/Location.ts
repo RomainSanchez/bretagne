@@ -31,11 +31,11 @@ export class LocationApi extends BaseLoopBackApi {
   }
 
   /**
-   * Recherchez un élément lié par id pour media.
+   * Recherchez un élément lié par id pour medias.
    *
    * @param {any} id location id
    *
-   * @param {any} fk Clé externe pour media
+   * @param {any} fk Clé externe pour medias
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -46,10 +46,10 @@ export class LocationApi extends BaseLoopBackApi {
    * This usually means the response is a `Location` object.)
    * </em>
    */
-  public findByIdMedia(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public findByIdMedias(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/locations/:id/media/:fk";
+    "/locations/:id/medias/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -61,11 +61,11 @@ export class LocationApi extends BaseLoopBackApi {
   }
 
   /**
-   * Supprimez un élément lié par id pour media.
+   * Supprimez un élément lié par id pour medias.
    *
    * @param {any} id location id
    *
-   * @param {any} fk Clé externe pour media
+   * @param {any} fk Clé externe pour medias
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -73,10 +73,10 @@ export class LocationApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public destroyByIdMedia(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public destroyByIdMedias(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/locations/:id/media/:fk";
+    "/locations/:id/medias/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -88,11 +88,11 @@ export class LocationApi extends BaseLoopBackApi {
   }
 
   /**
-   * Mettez à jour un élément lié par id pour media.
+   * Mettez à jour un élément lié par id pour medias.
    *
    * @param {any} id location id
    *
-   * @param {any} fk Clé externe pour media
+   * @param {any} fk Clé externe pour medias
    *
    * @param {object} data Request data.
    *
@@ -107,10 +107,10 @@ export class LocationApi extends BaseLoopBackApi {
    * This usually means the response is a `Location` object.)
    * </em>
    */
-  public updateByIdMedia(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public updateByIdMedias(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/locations/:id/media/:fk";
+    "/locations/:id/medias/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -124,7 +124,7 @@ export class LocationApi extends BaseLoopBackApi {
   }
 
   /**
-   * Demandes media de location.
+   * Demandes medias de location.
    *
    * @param {any} id location id
    *
@@ -139,10 +139,10 @@ export class LocationApi extends BaseLoopBackApi {
    * This usually means the response is a `Location` object.)
    * </em>
    */
-  public getMedia(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
+  public getMedias(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/locations/:id/media";
+    "/locations/:id/medias";
     let _routeParams: any = {
       id: id
     };
@@ -154,7 +154,7 @@ export class LocationApi extends BaseLoopBackApi {
   }
 
   /**
-   * Crée une instance dans media de ce modèle.
+   * Crée une instance dans medias de ce modèle.
    *
    * @param {any} id location id
    *
@@ -171,10 +171,10 @@ export class LocationApi extends BaseLoopBackApi {
    * This usually means the response is a `Location` object.)
    * </em>
    */
-  public createMedia(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public createMedias(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/locations/:id/media";
+    "/locations/:id/medias";
     let _routeParams: any = {
       id: id
     };
@@ -187,7 +187,7 @@ export class LocationApi extends BaseLoopBackApi {
   }
 
   /**
-   * Supprime tous les media de ce modèle.
+   * Supprime tous les medias de ce modèle.
    *
    * @param {any} id location id
    *
@@ -197,10 +197,10 @@ export class LocationApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public deleteMedia(id: any, customHeaders?: Function): Observable<any> {
+  public deleteMedias(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/locations/:id/media";
+    "/locations/:id/medias";
     let _routeParams: any = {
       id: id
     };
@@ -211,7 +211,7 @@ export class LocationApi extends BaseLoopBackApi {
   }
 
   /**
-   * Compte media de location.
+   * Compte medias de location.
    *
    * @param {any} id location id
    *
@@ -225,10 +225,10 @@ export class LocationApi extends BaseLoopBackApi {
    *
    *  - `count` – `{number}` - 
    */
-  public countMedia(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
+  public countMedias(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/locations/:id/media/count";
+    "/locations/:id/medias/count";
     let _routeParams: any = {
       id: id
     };
@@ -302,7 +302,7 @@ export class LocationApi extends BaseLoopBackApi {
   }
 
   /**
-   * Crée une instance dans media de ce modèle.
+   * Crée une instance dans medias de ce modèle.
    *
    * @param {any} id location id
    *
@@ -319,10 +319,10 @@ export class LocationApi extends BaseLoopBackApi {
    * This usually means the response is a `Location` object.)
    * </em>
    */
-  public createManyMedia(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+  public createManyMedias(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/locations/:id/media";
+    "/locations/:id/medias";
     let _routeParams: any = {
       id: id
     };
