@@ -9,7 +9,7 @@ import { User, UserApi } from '../shared/sdk';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  private user: User = new User();
+  user: User = new User();
 
   constructor(
     private router: Router,

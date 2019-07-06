@@ -25,5 +25,9 @@
               <input matInput placeholder="Lattitude" [(ngModel)]="location.lattitude" name="lattitude" required>
           </mat-form-field>
       </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="2">
+        <button mat-raised-button (click)="submit()" color="primary">Enregistrer</button>
+      </mat-grid-tile>
     </mat-grid-list>
 </form>
