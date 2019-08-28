@@ -1,33 +1,50 @@
-<h2>Nouveau lieu</h2>
 
-<form class="login-form">
-    <mat-grid-list cols="2" rowHeight="50px">
-      <mat-grid-tile [colspan]="2" [rowspan]="1">
-          <mat-form-field>
-              <input matInput placeholder="Nom" [(ngModel)]="location.name" name="name" required>
-          </mat-form-field>
-      </mat-grid-tile>
+<mat-card>
+    <h2>Nouveau lieu</h2>
 
-      <mat-grid-tile [colspan]="2" [rowspan]="1">
-          <mat-form-field>
-              <textarea matInput placeholder="Description" [(ngModel)]="location.description" name="description" required></textarea>
-          </mat-form-field>
-      </mat-grid-tile>
+    <form class="location-form" [formGroup]="locationForm" fxLayout="column">
+        <div class="input-row">
+            <mat-form-field fxFlex>
+                <input matInput placeholder="Nom" formControlName="name" name="name" required>
+            </mat-form-field>
+        </div>
+        <div class="input-row">
+            <mat-form-field fxFlex>
+                <textarea matInput placeholder="Description" formControlName="description" name="description" required></textarea>
+            </mat-form-field>
+        </div>
+        <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+            <mat-form-field fxFlex class="coordinate">
+                <input matInput type="number" placeholder="Longitude" formControlName="longitude" name="longitude" required>
+            </mat-form-field>
+    
+            <mat-form-field fxFlex class="coordinate">
+                <input matInput type="number" placeholder="Lattitude" formControlName="lattitude" name="lattitude" required>
+            </mat-form-field>
+        </div>
 
-      <mat-grid-tile [colspan]="1">
-          <mat-form-field>
-              <input matInput placeholder="Longitude" [(ngModel)]="location.longitude" name="longitude" required>
-          </mat-form-field>
-      </mat-grid-tile>
+        <h3>Médias</h3>
+    
+        <button mat-raised-button color="accent" (click)="addMedia()"><mat-icon>add</mat-icon></button>
+    
+        <ng-container *ngFor="let mediaFormGroup of locationForm.controls.medias.controls; let i = index">
+            <div [formGroup]="mediaFormGroup">
+                <mat-form-field fxFlex>
+                    <input matInput type="text" placeholder="Nom" formControlName="name">
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <input matInput type="text" placeholder="URL" formControlName="url">
+                </mat-form-field>
+            
+                <button mat-button color="accent" (click)="removeMedia(i)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </ng-container>
 
-      <mat-grid-tile [colspan]="1">
-          <mat-form-field>
-              <input matInput placeholder="Lattitude" [(ngModel)]="location.lattitude" name="lattitude" required>
-          </mat-form-field>
-      </mat-grid-tile>
-
-      <mat-grid-tile [colspan]="2">
         <button mat-raised-button (click)="submit()" color="primary">Enregistrer</button>
-      </mat-grid-tile>
-    </mat-grid-list>
-</form>
+    
+    </form>
+</mat-card>
+
+<mat-spinner *ngIf="isLoading === true"></mat-spinner>

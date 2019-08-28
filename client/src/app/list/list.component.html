@@ -1,3 +1,43 @@
-<p>
-  list works!
-</p>
+<h2>Lieux</h2>
+
+<div class="list-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="list-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let location"> {{ location.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lattitude">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Lattitude </mat-header-cell>
+      <mat-cell *matCellDef="let location"> {{ location.lattitude}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="longitude">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Longitude </mat-header-cell>
+      <mat-cell *matCellDef="let location"> {{ location.longitude}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="medias">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Médias </mat-header-cell>
+      <mat-cell *matCellDef="let location"> {{ location.medias.length}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let location; columns: displayedColumns;" (click)="rowClicked(location)">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+<mat-spinner *ngIf="isLoading === true"></mat-spinner>
+

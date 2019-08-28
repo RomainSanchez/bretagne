@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { User, UserApi } from '../shared/sdk';
+import { User, UserApi, AccessToken, LoopBackAuth, SDKToken } from '../shared/sdk';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userApi: UserApi
+    private userApi: UserApi,
+    private authService: LoopBackAuth
   ) { }
 
   ngOnInit() {
@@ -21,7 +22,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
+    this.userApi.login(this.user).subscribe((token: SDKToken) => {
+      this.authService.setToken(token);
+      this.router.navigate(['admin']);
+    });
   }
 
 }

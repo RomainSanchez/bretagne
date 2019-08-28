@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatGridListModule
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatGridListModule, MatSnackBarModule, MatPaginatorModule, MatSortModule
 } from '@angular/material';
 
 
@@ -17,6 +17,9 @@ import { MapComponent } from './map/map.component';
 import { AdminComponent } from './admin/admin.component';
 import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthGuardService } from './login/auth-guard.service';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { FormComponent } from './form/form.component';
     MapComponent,
     AdminComponent,
     ListComponent,
-    FormComponent
+    FormComponent,
+    RegisterComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -42,12 +47,17 @@ import { FormComponent } from './form/form.component';
     MatFormFieldModule,
     MatButtonModule,
     MatGridListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSnackBarModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     SDKBrowserModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [],
+providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

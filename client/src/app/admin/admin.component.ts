@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit {
     this.locationApi.find({
       include: ['medias']
     }).subscribe((locations: Location[]) => {
-      console.log(locations);
+      //console.log(locations);
     });
   }
 

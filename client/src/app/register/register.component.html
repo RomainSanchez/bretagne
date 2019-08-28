@@ -1,0 +1,25 @@
+<mat-card>
+  <h2>Nouvel utilisateur</h2>
+
+  <form #userForm="ngForm">
+    <mat-form-field>
+      <input matInput type="text" class="form-control" id="username" required
+       [(ngModel)]="user.username" placeholder="Identifiant" name="username">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="password" class="form-control" id="password" required
+         [(ngModel)]="user.password" placeholder="Mot de passe" name="password">
+      </mat-form-field>
+
+      <mat-form-field>
+          <input matInput type="email" class="form-control" id="email" required
+           [(ngModel)]="user.email" placeholder="Email" name="email">
+        </mat-form-field>
+
+          <button mat-raised-button color="primary" (click)="submit()">Enregistrer</button>
+  </form>
+
+</mat-card>
+
+<mat-spinner *ngIf="isLoading === true"></mat-spinner>

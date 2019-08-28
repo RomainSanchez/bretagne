@@ -12,6 +12,7 @@
     "build:sdk": "./node_modules/.bin/lb-sdk server/server.js ./client/src/app/shared/sdk"
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "browser-sync": "^2.23.2",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
