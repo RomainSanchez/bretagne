@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  private locations: Location[];
 
   constructor() {
     // Just note that this will need to be done to new components that you create if you want to give it access to our loopback app.

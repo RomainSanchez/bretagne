@@ -16,13 +16,13 @@ export class EditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.route);
-    const locationId = this.route.params._value.id;
-    console.log(locationId)
+    // console.log(this.route);
+    // const locationId = this.route.params._value.id;
+    // console.log(locationId)
 
-    this.locationApi.findOne({id: locationId}).subscribe((location: Location) => {
-      this.location = location;
-    });
+    // this.locationApi.findOne({id: locationId}).subscribe((location: Location) => {
+    //   this.location = location;
+    // });
   }
 
 }

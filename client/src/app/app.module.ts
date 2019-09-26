@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatGridListModule, MatSnackBarModule, MatPaginatorModule, MatSortModule
+  MatDividerModule, MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatGridListModule, MatSnackBarModule, MatPaginatorModule, MatSortModule
 } from '@angular/material';
 
 
@@ -20,6 +20,8 @@ import { FormComponent } from './form/form.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuardService } from './login/auth-guard.service';
 import { EditComponent } from './edit/edit.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { SafeHtmlPipe } from './pipe/safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,12 @@ import { EditComponent } from './edit/edit.component';
     ListComponent,
     FormComponent,
     RegisterComponent,
-    EditComponent
+    EditComponent,
+    DialogComponent,
+    SafeHtmlPipe
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +58,7 @@ import { EditComponent } from './edit/edit.component';
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
+    MatDividerModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
