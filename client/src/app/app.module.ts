@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatDividerModule, MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatGridListModule, MatSnackBarModule, MatPaginatorModule, MatSortModule
+  MatDividerModule, MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule,
+  MatGridListModule, MatSnackBarModule, MatPaginatorModule, MatSortModule, MatTooltipModule
 } from '@angular/material';
 
 
@@ -19,9 +19,9 @@ import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuardService } from './login/auth-guard.service';
-import { EditComponent } from './edit/edit.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { SafeHtmlPipe } from './pipe/safe-html.pipe';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +32,13 @@ import { SafeHtmlPipe } from './pipe/safe-html.pipe';
     ListComponent,
     FormComponent,
     RegisterComponent,
-    EditComponent,
     DialogComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    ConfirmationDialogComponent
   ],
   entryComponents: [
-    DialogComponent
+    DialogComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,9 +60,10 @@ import { SafeHtmlPipe } from './pipe/safe-html.pipe';
     MatSortModule,
     MatSnackBarModule,
     MatDividerModule,
+    MatTooltipModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
     SDKBrowserModule.forRoot(),
     AppRoutingModule
   ],

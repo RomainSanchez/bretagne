@@ -16,11 +16,13 @@ export class MapComponent implements OnInit {
     private dialog: MatDialog
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.locationApi.find({include: ['medias']}).subscribe((locations: Location[]) => {
+      locations = locations.filter(location => location.medias.length > 0);
+
       const map = L.map('map', {
         center: [48.195389, -2.932644],
-        zoom: 8,
+        zoom: 9,
         maxBoundsViscosity: 1.0
       });
 
@@ -30,11 +32,13 @@ export class MapComponent implements OnInit {
 
       const marker = L.marker([47.997542, -4.097899], { title: 'Quimper' })
         .addTo(map)
-        .on('click', (e) => {
-          const location = locations.find((l: Location) => {
-            return l.lattitude === e.latlng.lat + '' && l.longitude === e.latlng.lng + '';
-          });
+        .on('click', e => {
+          const event = e as L.LeafletMouseEvent;
 
+          const location = locations.find((l: Location) => {
+            return l.lattitude === event.latlng.lat + '' && l.longitude === event.latlng.lng + '';
+          });
+console.log(location);
           const dialogRef = this.dialog.open(DialogComponent, {
             width: '700px',
             data: location

@@ -25,10 +25,23 @@
       <mat-cell *matCellDef="let location"> {{ location.longitude}} </mat-cell>
     </ng-container>
 
-    <!-- Color Column -->
     <ng-container matColumnDef="medias">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Médias </mat-header-cell>
       <mat-cell *matCellDef="let location"> {{ location.medias.length}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer</mat-header-cell>
+      <mat-cell class="delete-cell" *matCellDef="let location" (click)="$event.stopPropagation()">
+        <button
+          (click)="openConfirmationDialog(location)"
+          mat-mini-fab
+          color="accent"
+          matTooltip="Supprimer ce lieu"
+        >
+          <mat-icon class="delete-icon mat-18">delete</mat-icon>
+        </button>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

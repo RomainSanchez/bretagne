@@ -1,15 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { Location, LocationApi } from '../shared/sdk';
 import { Router } from '@angular/router';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.sass']
 })
-export class ListComponent implements OnInit {
-  displayedColumns = ['name', 'lattitude', 'longitude', 'medias'];
+export class ListComponent implements OnInit, AfterViewInit {
+  displayedColumns = ['name', 'lattitude', 'longitude', 'medias', 'delete'];
   dataSource: MatTableDataSource<Location>;
   isLoading = false;
 
@@ -18,19 +19,27 @@ export class ListComponent implements OnInit {
 
   constructor(
     private locationApi: LocationApi,
-    private router: Router
-  ) {}
+    private router: Router,
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
+  ) {
+    this.dataSource = new MatTableDataSource();
+  }
 
   ngOnInit() {
     this.isLoading = true;
 
     this.locationApi.find({include: ['medias']}).subscribe((locations: Location[]) => {
-      this.dataSource = new MatTableDataSource(locations);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.dataSource.data = locations;
 
       this.isLoading = false;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.filterPredicate = this.filter;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
@@ -43,4 +52,42 @@ export class ListComponent implements OnInit {
     this.router.navigate(['location', location.id]);
   }
 
+  openConfirmationDialog(location: Location): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: 'Supprimer définitivement ce lieu et ses médias ?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.delete(location);
+      }
+    });
+  }
+
+  private filter(location: Location, filters: string) {
+    const matchFilter = [];
+    const filterArray = filters.split('+');
+    const fields = Object.values(location).filter(Boolean);
+
+    filterArray.forEach(filter => {
+      const customFilter = [];
+
+      fields.forEach(field => {
+        if (typeof field === 'string') {
+          customFilter.push(field.toLocaleLowerCase().includes(filter));
+        }
+      });
+      matchFilter.push(customFilter.some(Boolean));
+    });
+
+    return matchFilter.every(Boolean);
+  }
+
+  private delete(location: Location): void {
+    this.locationApi.deleteById(location.id).subscribe(() => {
+      this.dataSource.data = this.dataSource.data.filter(theLocation => theLocation.id !== location.id);
+      this.snackbar.open('Lieu supprimé', null, {duration: 2000});
+    });
+  }
 }
