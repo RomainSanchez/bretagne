@@ -12,12 +12,13 @@ import { ActivatedRoute } from '@angular/router';
 export class FormComponent implements OnInit {
   locationForm: FormGroup;
   isLoading = false;
-  location: Location;
+  location: Location = new Location();
 
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private locationApi: LocationApi,
+    private mediaApi: MediaApi,
     private snackBar: MatSnackBar
   ) { }
 
@@ -25,6 +26,7 @@ export class FormComponent implements OnInit {
     const locationId = this.route.snapshot.paramMap.get('id');
 
     this.locationForm = this.formBuilder.group({
+      id: this.formBuilder.control(''),
       name: this.formBuilder.control(''),
       description: this.formBuilder.control(''),
       lattitude: this.formBuilder.control(0),
@@ -57,10 +59,10 @@ export class FormComponent implements OnInit {
     }
 
     this.isLoading = true;
-    console.log(this.location)
     this.location = Object.assign(this.location, this.locationForm.value);
-console.log(this.location)
+
     this.locationApi.replaceOrCreate(this.location).subscribe((location: Location) => {
+      this.location = location;
       const medias = this.locationForm.value.medias;
 
       if (medias.length < 1) {
@@ -70,10 +72,11 @@ console.log(this.location)
       }
 
       medias.forEach((media: Media, index: number) => {
-        this.locationApi.createMedias(location.id, media).subscribe(() => {
+        media.location_id = location.id;
+
+        this.mediaApi.replaceOrCreate(media).subscribe(() => {
           if (index === medias.length - 1) {
             this.isLoading = false;
-            this.locationForm.reset();
 
             this.snackBar.open('Lieu enregistré', null, {
               duration: 2000,
@@ -88,6 +91,8 @@ console.log(this.location)
     const mediaArray = this.locationForm.controls.medias as FormArray;
 
     mediaArray.insert(mediaArray.length, this.formBuilder.group({
+      id: [null],
+      location_id: [''],
       name: ['', Validators.required],
       url: ['', Validators.required],
     }));
@@ -95,14 +100,24 @@ console.log(this.location)
 
   removeMedia(index): void {
     const mediaArray = this.locationForm.controls.medias as FormArray;
+    const media = mediaArray.value[index];
 
-    mediaArray.removeAt(index);
+    this.mediaApi.deleteById(media.id).subscribe(() => {
+      mediaArray.removeAt(index);
+
+      this.snackBar.open('Média supprimé', null, {
+        duration: 1300,
+      });
+    });
   }
 
   private insertMedia(media) {
+    delete media.file;
     const mediaArray = this.locationForm.controls.medias as FormArray;
 
     mediaArray.insert(mediaArray.length, this.formBuilder.group({
+      id: [media.id],
+      location_id: [media.location_id],
       name: [media.name, Validators.required],
       url: [media.url, Validators.required],
     }));

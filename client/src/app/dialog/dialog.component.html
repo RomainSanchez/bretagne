@@ -1,7 +1,9 @@
 <h1>{{ location?.name }}</h1>
 <p>{{ location?.description }}</p>
 <mat-divider></mat-divider>
-<div *ngFor="let media of location?.medias">
-  <h3>{{ media.name }}</h3>
-  <div [innerHTML]="media.url | safeHtml"></div>
-</div>
+<mat-dialog-content class="medias">
+  <div *ngFor="let media of location?.medias">
+    <h3>{{ media.name }}</h3>
+    <div [innerHTML]="media.url | media"></div>
+  </div>
+</mat-dialog-content>

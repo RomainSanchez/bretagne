@@ -1,2 +1,18 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <mat-toolbar-row>
+    <span>
+      Bretagne vidéos
+    </span>
+    <div class="admin-links" *ngIf="authService.getAccessTokenId()">
+      <span>
+        <a routerLink="/locations">Lieux</a>
+      </span>
+      <span id="current-user">
+        <mat-icon>account_circle</mat-icon>
+        <span>{{ authService.getToken().user?.name }}</span>
+      </span>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <router-outlet></router-outlet>

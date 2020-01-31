@@ -1,5 +1,11 @@
 <h2>Lieux</h2>
 
+<a class="new" routerLink="/locations/new">
+  <button mat-fab>
+    <mat-icon>add</mat-icon>
+  </button>
+</a>
+
 <div class="list-header">
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">

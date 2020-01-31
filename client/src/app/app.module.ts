@@ -22,6 +22,7 @@ import { AuthGuardService } from './login/auth-guard.service';
 import { DialogComponent } from './dialog/dialog.component';
 import { SafeHtmlPipe } from './pipe/safe-html.pipe';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { MediaPipe } from './pipe/media.pipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     RegisterComponent,
     DialogComponent,
     SafeHtmlPipe,
+    MediaPipe,
     ConfirmationDialogComponent
   ],
   entryComponents: [
