@@ -1,9 +1,35 @@
 <h1>{{ location?.name }}</h1>
+<button mat-icon-button id="close" (click)="onNoClick()"><mat-icon>close</mat-icon></button>
 <p>{{ location?.description }}</p>
 <mat-divider></mat-divider>
 <mat-dialog-content class="medias">
-  <div *ngFor="let media of location?.medias">
-    <h3>{{ media.name }}</h3>
-    <div [innerHTML]="media.url | media"></div>
-  </div>
+  <gallery *ngIf="location?.medias.length > 0"
+    id="gallery"
+    [items]="items"
+    [loadingMode]="indeterminate"
+    thumbPosition="left"
+    [itemTemplate]="itemTemplate"
+    [thumbTemplate]="thumbTemplate"
+  ></gallery>
+  <h3 *ngIf="location?.medias.length === 0" class="mat-display-1">Aucun média pour ce lieu</h3>
 </mat-dialog-content>
+
+<ng-template #itemTemplate
+  let-index="index"
+  let-type="type"
+  let-data="data"
+  let-currIndex="currIndex"
+>
+  <span *ngIf="type === 'image' && index === currIndex" class="item-text">
+    {{data?.title}}
+  </span>
+</ng-template>
+
+<ng-template #thumbTemplate
+  let-type="type"
+  let-data="data"
+>
+  <span *ngIf="type === 'youtube'" class="item-type">
+    <mat-icon class="video-icon">play_circle_outline</mat-icon>
+  </span>
+</ng-template>

@@ -23,6 +23,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { SafeHtmlPipe } from './pipe/safe-html.pipe';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { MediaPipe } from './pipe/media.pipe';
+import { GalleryModule } from '@ngx-gallery/core';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,10 @@ import { MediaPipe } from './pipe/media.pipe';
     FormsModule,
     ReactiveFormsModule,
     SDKBrowserModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    GalleryModule,
+    BrowserAnimationsModule
+
   ],
 providers: [AuthGuardService],
   bootstrap: [AppComponent]

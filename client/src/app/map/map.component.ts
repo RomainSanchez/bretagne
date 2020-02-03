@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 
 import { LocationApi, Location } from '../shared/sdk';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
@@ -11,6 +11,12 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./map.component.sass']
 })
 export class MapComponent implements OnInit {
+  private map: L.Map;
+  private markerIcon: L.Icon = L.icon({
+    iconUrl: 'assets/img/dot.png',
+    iconSize: [20, 20]
+  });
+
   constructor(
     private locationApi: LocationApi,
     private dialog: MatDialog
@@ -18,9 +24,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.locationApi.find({include: ['medias']}).subscribe((locations: Location[]) => {
-      locations = locations.filter(location => location.medias.length > 0);
-
-      const map = L.map('map', {
+      this.map = L.map('map', {
         center: [48.195389, -2.932644],
         zoom: 9,
         maxBoundsViscosity: 1.0
@@ -28,26 +32,25 @@ export class MapComponent implements OnInit {
 
       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: 'MAP',
-      }).addTo(map);
+      }).addTo(this.map);
 
-      const marker = L.marker([47.997542, -4.097899], { title: 'Quimper' })
-        .addTo(map)
-        .on('click', e => {
-          const event = e as L.LeafletMouseEvent;
+      locations.forEach((location: Location) => this.addMarker(location));
+    });
+  }
 
-          const location = locations.find((l: Location) => {
-            return l.lattitude === event.latlng.lat + '' && l.longitude === event.latlng.lng + '';
-          });
-console.log(location);
-          const dialogRef = this.dialog.open(DialogComponent, {
-            width: '700px',
-            data: location
-          });
+  private addMarker(location: Location) {
+    L.marker([parseFloat(location.lattitude), parseFloat(location.longitude)], {
+      title: location.name,
+      icon: this.markerIcon
+    })
+      .addTo(this.map)
+      .on('click', e => {
+        const dialogRef = this.dialog.open(DialogComponent, {
+          width: '700px',
+          data: location
+        });
 
-          dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-          });
-      });
+        dialogRef.afterClosed().subscribe(result => {});
     });
   }
 
