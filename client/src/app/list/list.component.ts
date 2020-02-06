@@ -10,7 +10,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
   styleUrls: ['./list.component.sass']
 })
 export class ListComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['name', 'lattitude', 'longitude', 'medias', 'delete'];
+  displayedColumns = ['name', 'lattitude', 'longitude', 'level', 'medias', 'delete'];
   dataSource: MatTableDataSource<Location>;
   isLoading = false;
 
@@ -76,6 +76,10 @@ export class ListComponent implements OnInit, AfterViewInit {
       fields.forEach(field => {
         if (typeof field === 'string') {
           customFilter.push(field.toLocaleLowerCase().includes(filter));
+        }
+
+        if (typeof field === 'number') {
+          customFilter.push((field + '').includes(filter));
         }
       });
       matchFilter.push(customFilter.some(Boolean));

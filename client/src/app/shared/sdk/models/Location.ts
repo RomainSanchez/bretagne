@@ -9,6 +9,7 @@ export interface LocationInterface {
   "longitude": string;
   "name": string;
   "description": string;
+  "level": number;
   "id"?: number;
   medias?: Media[];
 }
@@ -18,6 +19,7 @@ export class Location implements LocationInterface {
   "longitude": string;
   "name": string;
   "description": string;
+  "level": number;
   "id": number;
   medias: Media[];
   constructor(data?: LocationInterface) {

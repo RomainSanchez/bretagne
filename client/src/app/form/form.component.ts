@@ -31,6 +31,7 @@ export class FormComponent implements OnInit {
       description: this.formBuilder.control(''),
       lattitude: this.formBuilder.control(0),
       longitude: this.formBuilder.control(0),
+      level: this.formBuilder.control(1),
       medias: this.formBuilder.array([])
     });
 

@@ -21,6 +21,11 @@
     "description": {
       "type": "string",
       "required": true
+    },
+    "level": {
+      "type": "number",
+      "required": true,
+      "default": 1
     }
   },
   "validations": [],

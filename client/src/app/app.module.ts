@@ -5,7 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
   MatDividerModule, MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule,
-  MatGridListModule, MatSnackBarModule, MatPaginatorModule, MatSortModule, MatTooltipModule
+  MatGridListModule, MatSnackBarModule, MatPaginatorModule, MatSortModule, MatTooltipModule, MatSelectModule
 } from '@angular/material';
 
 
@@ -65,6 +65,7 @@ import { GalleryModule } from '@ngx-gallery/core';
     MatDividerModule,
     MatTooltipModule,
     MatSnackBarModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     SDKBrowserModule.forRoot(),
