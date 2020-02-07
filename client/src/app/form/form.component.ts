@@ -61,6 +61,10 @@ export class FormComponent implements OnInit {
 
     this.isLoading = true;
     this.location = Object.assign(this.location, this.locationForm.value);
+    
+    if (this.location.id < 1) {
+      delete this.location.id;
+    }
 
     this.locationApi.replaceOrCreate(this.location).subscribe((location: Location) => {
       this.location = location;

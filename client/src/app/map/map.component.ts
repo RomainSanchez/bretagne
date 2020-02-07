@@ -69,6 +69,14 @@ export class MapComponent implements OnInit {
       const marker = L.marker([parseFloat(location.lattitude), parseFloat(location.longitude)], {
         title: location.name,
         icon: this.markerIcon
+      })
+      .on('click', e => {
+        const dialogRef = this.dialog.open(DialogComponent, {
+          width: '700px',
+          data: location
+        });
+
+        dialogRef.afterClosed().subscribe(result => {});
       });
 
       switch (location.level) {
