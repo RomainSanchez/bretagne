@@ -2,5 +2,5 @@
 
 module.exports = function enableAuthentication(server) {
   // enable authentication
-  server.enableAuth({datasource: 'postgres'});
+//  server.enableAuth({datasource: 'postgres'});
 };

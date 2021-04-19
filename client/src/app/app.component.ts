@@ -1,6 +1,7 @@
 import { LoopBackConfig } from './shared/sdk/lb.config';
 import { Component } from '@angular/core';
 import { LoopBackAuth } from './shared/sdk';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,14 @@ import { LoopBackAuth } from './shared/sdk';
 })
 export class AppComponent {
 
-  constructor(public authService: LoopBackAuth) {
+  constructor(
+    public authService: LoopBackAuth,
+    private titleService: Title
+  ) {
     // Just note that this will need to be done to new components that you create if you want to give it access to our loopback app.
-    LoopBackConfig.setBaseURL('http://51.178.84.212:8080');
+    LoopBackConfig.setBaseURL('https://videos.fr:8080');
     LoopBackConfig.setApiVersion('api');
+
+    this.titleService.setTitle('Videos.fr');
   }
 }
