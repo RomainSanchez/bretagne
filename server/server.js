@@ -1,29 +1,38 @@
 'use strict';
 
-var loopback = require('loopback');
-var boot = require('loopback-boot');
+const loopback = require('loopback');
+const boot = require('loopback-boot');
 
-var app = module.exports = loopback();
+const http = require('http');
+const https = require('https');
+var fs = require("fs");
+const app = module.exports = loopback();
+
+// boot scripts mount components like REST API
+boot(app, __dirname);
 
 app.start = function() {
-  // start the web server
-  return app.listen(function() {
-    app.emit('started');
-    var baseUrl = app.get('url').replace(/\/$/, '');
-    console.log('Web server listening at: %s', baseUrl);
+  let server = null;
+  const options = {
+    key: fs.readFileSync('/var/www/bretagne-videos/privkey.pem').toString(),
+    cert: fs.readFileSync('/var/www/bretagne-videos/cert.pem').toString()
+  };
+
+  server = https.createServer(options, app);
+
+  server.listen(app.get('port'), function() {
+    const baseUrl = 'https://' + app.get('host') + ':' + app.get('port');
+    app.emit('started', baseUrl);
+    console.log('LoopBack server listening @ %s%s', baseUrl, '/');
     if (app.get('loopback-component-explorer')) {
-      var explorerPath = app.get('loopback-component-explorer').mountPath;
+      const explorerPath = app.get('loopback-component-explorer').mountPath;
       console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
     }
   });
+  return server;
 };
 
-// Bootstrap the application, configure models, datasources and middleware.
-// Sub-apps like REST API are mounted via boot scripts.
-boot(app, __dirname, function(err) {
-  if (err) throw err;
-
-  // start the server if `$ node server.js`
-  if (require.main === module)
-    app.start();
-});
+// start the server if `$ node server.js`
+if (require.main === module) {
+  app.start();
+}

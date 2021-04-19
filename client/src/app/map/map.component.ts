@@ -33,7 +33,7 @@ export class MapComponent implements OnInit {
         maxBoundsViscosity: 1.0
       });
 
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: 'MAP',
       }).addTo(this.map);
 

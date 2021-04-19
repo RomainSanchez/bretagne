@@ -43,7 +43,7 @@
 
     <button mat-raised-button color="accent" (click)="addMedia()"><mat-icon>add</mat-icon></button>
 
-    <ng-container *ngFor="let mediaFormGroup of locationForm.controls.medias.controls; let i = index">
+    <ng-container *ngFor="let mediaFormGroup of locationForm.get('medias')['controls']; let i = index">
       <div [formGroup]="mediaFormGroup">
         <input type="hidden" formControlName="id">
         <input type="hidden" formControlName="location_id">
