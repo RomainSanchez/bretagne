@@ -2,15 +2,5 @@
   "db": {
     "name": "db",
     "connector": "memory"
-  },
-  "postgres": {
-    "host": "localhost",
-    "port": "5432",
-    "database": "bretagne",
-    "username": "bretagne",
-    "password": "@bretagne29000",
-    "name": "postgres",
-    "debug": true,
-    "connector": "postgresql"
   }
 }

@@ -11,11 +11,11 @@ import { FormComponent } from './form/form.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path : '', component : MapComponent },
-  { path: 'admin', component: ListComponent, canActivate: [AuthGuardService] },
+  { path: 'admin', component: ListComponent, /*canActivate: [AuthGuardService] */},
   { path: 'register', component: RegisterComponent, /* canActivate: [AuthGuardService] */},
-  { path: 'locations', component: ListComponent, canActivate: [AuthGuardService] },
-  { path: 'locations/new', component: FormComponent, canActivate: [AuthGuardService] },
-  { path: 'location/:id', component: FormComponent, canActivate: [AuthGuardService] }
+  { path: 'locations', component: ListComponent, /*canActivate: [AuthGuardService]*/ },
+{ path: 'locations/new', component: FormComponent, /*canActivate: [AuthGuardService]*/ },
+  { path: 'location/:id', component: FormComponent, /*canActivate: [AuthGuardService] */}
 ];
 
 @NgModule({

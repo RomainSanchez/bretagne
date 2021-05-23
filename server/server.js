@@ -14,14 +14,14 @@ boot(app, __dirname);
 app.start = function() {
   let server = null;
   const options = {
-    key: fs.readFileSync('/var/www/bretagne-videos/privkey.pem').toString(),
-    cert: fs.readFileSync('/var/www/bretagne-videos/cert.pem').toString()
+    // key: fs.readFileSync('/var/www/bretagne-videos/privkey.pem').toString(),
+    // cert: fs.readFileSync('/var/www/bretagne-videos/cert.pem').toString()
   };
 
-  server = https.createServer(options, app);
+  server = http.createServer(options, app);
 
   server.listen(app.get('port'), function() {
-    const baseUrl = 'https://' + app.get('host') + ':' + app.get('port');
+    const baseUrl = 'http://' + app.get('host') + ':' + app.get('port');
     app.emit('started', baseUrl);
     console.log('LoopBack server listening @ %s%s', baseUrl, '/');
     if (app.get('loopback-component-explorer')) {

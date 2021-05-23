@@ -14,36 +14,36 @@
     ]
   },
   "User": {
-    "dataSource": "postgres"
+    "dataSource": "db"
   },
   "AccessToken": {
-    "dataSource": "postgres",
+    "dataSource": "db",
     "public": true
   },
   "ACL": {
-    "dataSource": "postgres",
+    "dataSource": "db",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "postgres",
+    "dataSource": "db",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "postgres",
+    "dataSource": "db",
     "public": false
   },
   "Angular_Loopback": {
     "dataSource": null
   },
   "location": {
-    "dataSource": "postgres",
+    "dataSource": "db",
     "public": true
   },
   "media": {
-    "dataSource": "postgres",
+    "dataSource": "db",
     "public": true
   }
 }
