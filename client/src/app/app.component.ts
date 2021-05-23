@@ -15,7 +15,7 @@ export class AppComponent {
     private titleService: Title
   ) {
     // Just note that this will need to be done to new components that you create if you want to give it access to our loopback app.
-    LoopBackConfig.setBaseURL('https://videos.fr:8080');
+    LoopBackConfig.setBaseURL('http://127.0.0.1:8081');
     LoopBackConfig.setApiVersion('api');
 
     this.titleService.setTitle('Videos.fr');
