@@ -1,6 +1,5 @@
 <h1>{{ location?.name }}</h1>
 <button mat-icon-button id="close" (click)="onNoClick()"><mat-icon>close</mat-icon></button>
-<p>{{ location?.description }}</p>
 <mat-divider></mat-divider>
 <mat-dialog-content class="medias">
   <gallery *ngIf="location?.medias.length > 0"
@@ -33,3 +32,4 @@
     <mat-icon class="video-icon">play_circle_outline</mat-icon>
   </span>
 </ng-template>
+<p id="description">{{ location?.description }}</p>
