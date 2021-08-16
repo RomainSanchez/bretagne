@@ -4,8 +4,9 @@
       <img src="assets/img/logo.png" id="logo" alt="Logo bretagne videos">
     </span>
     <span id="title">
-      Pour une visite de la Bretagne en vidéos cliquer sur les points rouges
+      Découverte touristique des régions en images, zoomer/dézoomer pour voir plus de points rouges
     </span>
+    
     <div class="admin-links" *ngIf="authService.getAccessTokenId()">
       <span>
         <a routerLink="/locations">Lieux</a>
@@ -16,6 +17,11 @@
       </span>
     </div>
   </mat-toolbar-row>
+  <mat-toolbar-row>
+    <a id="contact" href="mailto:contact@videos.fr">Nous contacter</a>
+  </mat-toolbar-row>
+
+  
 </mat-toolbar>
 
 <router-outlet></router-outlet>
